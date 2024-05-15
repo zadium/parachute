@@ -10,8 +10,8 @@
         Zai Dium
 
     @version: 6.1
-    @updated: "2023-07-06 00:34:08"
-    @revision: 552
+    @updated: "2024-05-15 22:41:29"
+    @revision: 553
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @resources
@@ -52,9 +52,9 @@
     Lilim: Remove text
     Lilim: Fix region say to chan 0
     Lilim: Add FallDistance
-    Lilim: Rez Pin on land pos
-    Lilim: Add Target comm
-    Lilim: Add Show distance on Pin
+    Zai Dium: Rez Pin on land pos
+    Zai Dium: Add Target comm
+    Zai Dium: Add Show distance on Pin
     Zai Dium: Added new parachute mesh
 */
 
