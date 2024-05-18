@@ -10,12 +10,13 @@
         Zai Dium
 
     @version: 6.1
-    @updated: "2024-05-15 22:41:29"
-    @revision: 553
+    @updated: "2024-05-17 23:46:10"
+    @revision: 573
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @resources
         https://sketchfab.com/3d-models/set-of-map-pin-dc052c20722643bbaeff00ba4eacf02b#download
+        https://www.101soundboards.com/sounds/27005592-parachute-opening-2-options-cord-pull-skydive-parasend-parashoot-at-2create
 */
 
 //* script to implement Parachute
@@ -78,8 +79,8 @@ float Z_vel = 34.0;    //* upward thrust to slow descent // 45
 //* Sounds
 string chute_opens_sound = "parachute opening";  // parachute opening sound
 //* Animations
-string skydive_anim = "skydive";   //* pose when sky-diving
-string harness_pose = "harness";     //* pose when 'steering' chute via harness
+string skydive_anim = "SkyDive";   //* pose when sky-diving
+string steering_anim = "Steering";     //* pose when 'steering'
 
 //* Script
 float dist;          //* distance from ground
@@ -122,13 +123,13 @@ rezMapPin()
     v.z = v.z + vb.z + 0.1;
 
     //v.z = llGround( ZERO_VECTOR );
-    llRezObject("MapPin", v, ZERO_VECTOR, ZERO_ROTATION, 1);
+    llRezObject("Pin", v, ZERO_VECTOR, ZERO_ROTATION, 1);
 }
 
 hideChute()
 {
     integer i = llGetNumberOfPrims();
-    while (i>1)
+    while (i > 1)
     {
         if (llToLower(llGetLinkName(i) ) != "smokeburst")
             llSetLinkAlpha(i, 0, ALL_SIDES);
@@ -402,8 +403,9 @@ state deployed
             PERMISSION_CONTROL_CAMERA
         );
 
+        llStopAnimation("falldown");
         llStopAnimation(skydive_anim);     //* stop the sky-diving pose
-        llStartAnimation(harness_pose);   //* switch to 'using chute' pose now
+        llStartAnimation(steering_anim);   //* switch to 'using chute' pose now
 
         //* setup listen for owner in chat
         llListen( 0, "", llGetOwner(), "" );
@@ -454,7 +456,7 @@ state deployed
             {
                 if(message == "close")        //* command to close chute
                 {
-                    llStopAnimation(harness_pose);         //* stop the 'using chute' pose
+                    llStopAnimation(steering_anim);         //* stop the 'using chute' pose
                     hideChute();                          //* hide parachute
                     state default;                        //* back to falling state
                 }
@@ -511,7 +513,7 @@ state deployed
         if( llGetAgentInfo(llGetOwner()) & AGENT_FLYING)
         {
             llStopAnimation(skydive_anim);          //* stop all poses
-            llStopAnimation(harness_pose);
+            llStopAnimation(steering_anim);
 
             state default;
         }
@@ -521,7 +523,7 @@ state deployed
              !(llGetAgentInfo(llGetOwner()) & AGENT_FLYING) )
         {
 
-            llStopAnimation(harness_pose);
+            llStopAnimation(steering_anim);
             llStopAnimation(skydive_anim);
 
             llSetStatus(STATUS_PHYSICS, FALSE);    //* make non-physical
@@ -584,7 +586,7 @@ state deployed
     {
         if(id == NULL_KEY)
         {
-            llStopAnimation(harness_pose);
+            llStopAnimation(steering_anim);
             llStopAnimation(skydive_anim);
             llRegionSay(channel_number, "reset");                 //* Send chute is closed
             state default;
