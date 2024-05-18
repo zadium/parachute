@@ -10,8 +10,8 @@
         Zai Dium
 
     @version: 6.1
-    @updated: "2024-05-17 23:46:10"
-    @revision: 573
+    @updated: "2024-05-18 16:02:02"
+    @revision: 584
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @resources
@@ -77,9 +77,10 @@ float Y_vel = 0.0;
 float Z_vel = 34.0;    //* upward thrust to slow descent // 45
 
 //* Sounds
-string chute_opens_sound = "parachute opening";  // parachute opening sound
+string chute_opens_sound = "ParachuteOpening";  // parachute opening sound
+
 //* Animations
-string skydive_anim = "SkyDive";   //* pose when sky-diving
+string skydive_anim = "SkyDiving";   //* pose when sky-diving
 string steering_anim = "Steering";     //* pose when 'steering'
 
 //* Script
@@ -216,8 +217,10 @@ integer isSkydiving = FALSE;
 startSkydiving()
 {
     llStopAnimation("falldown");      //* stop plummeting pose
+    llStopAnimation(steering_anim);
     llStartAnimation(skydive_anim);   //* play sky-diving pose
     llRegionSay(channel_number, "fall");                 //* Send chute is falling, so maybe in deploy state, it send back to open
+    llOwnerSay("Skydiving...");
     isSkydiving = TRUE;
 }
 
@@ -248,8 +251,6 @@ default
         llRequestPermissions(llGetOwner(), PERMISSION_TRIGGER_ANIMATION );
 
         llSetTimerEvent(0.3);              //* set timer interval
-
-//        llStartAnimation(skydive_anim);   //* play sky-diving pose
 
         //* setup listen for chute deploy command from HUD
         llListen(channel_number, "", NULL_KEY, "" );

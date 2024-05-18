@@ -2,16 +2,13 @@
     @name: ParachuteHUD
     @description:
 
-    @author: --- Unkown
+    @author: --- Unkown, Lilim, Zai
     @version: 5.15
-    @updated: "2024-05-17 15:25:44"
-    @revision: 146
+    @updated: "2024-05-18 14:46:33"
+    @revision: 150
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
 */
-
-// parachute HUD script
-// script to control Parachute HUD
 
 /** Changes 04-2023
     Lilim: Change messages command from "D" to "deploy", i dont like short messages
@@ -19,10 +16,10 @@
     Lilim: Show status feed back from back-back, do not show green hud until confirm from chute
 */
 
-integer channel = -2341;       // HUD > Back-pack comm channel
+integer channel = -2341;       //* HUD > Back-pack channel
 
-float dist;       // distance above ground
-vector velocity;     // vertical velocity
+float dist;       //* distance above ground
+vector velocity;     //* vertical velocity
 integer opened = FALSE;
 integer deploy = FALSE;
 

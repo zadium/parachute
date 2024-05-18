@@ -3,9 +3,9 @@
     @description:
     @author: Zai Dium
 
-    @version: 6.1
-    @updated: "2024-05-16 02:31:47"
-    @revision: 456
+    @version: 2.1
+    @updated: "2024-05-18 15:42:35"
+    @revision: 459
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
 */
@@ -14,14 +14,16 @@ float dieTime = 10;//* in minutes
 
 init()
 {
+    llSetPrimitiveParams([PRIM_PHANTOM, TRUE]);
 }
 
 default
 {
     state_entry()
     {
-        llTargetOmega(ZERO_VECTOR, 0, 0);
+	    llSetPrimitiveParams([PRIM_PHANTOM, TRUE]);
         llSetText("", <1,1,1>, 1);
+	    llTargetOmega(ZERO_VECTOR, 0, 0);
     }
 
     on_rez(integer number)

@@ -26,6 +26,7 @@ http://www.heatonresearch.com/articles/series/22/
 * Phantom = True
 --* Temporary = True
 
+You can remove/unlink lower surface if you want simple parachute
 
 ## Animation
 
