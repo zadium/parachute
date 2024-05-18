@@ -1,5 +1,6 @@
 /**
     @name: Parachute
+    source: https://github.com/zadium/parachute
     @description:
 
     @author:
@@ -10,13 +11,14 @@
         Zai Dium
 
     @version: 6.1
-    @updated: "2024-05-18 22:57:37"
-    @revision: 607
+    @updated: "2024-05-19 01:31:29"
+    @revision: 611
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @resources
         https://sketchfab.com/3d-models/set-of-map-pin-dc052c20722643bbaeff00ba4eacf02b#download
         https://www.101soundboards.com/sounds/27005592-parachute-opening-2-options-cord-pull-skydive-parasend-parashoot-at-2create
+
 */
 
 //* script to implement Parachute
@@ -172,7 +174,7 @@ set_camera_view()
     llSetCameraParams(
     [
         CAMERA_ACTIVE, TRUE,              //* TRUE = active (Dynamic cam mode), FALSE = inactive
-        CAMERA_BEHINDNESS_ANGLE, 3.0,    //* (0 to 180) degrees         10.0
+        CAMERA_BEHINDNESS_ANGLE, 90.0,    //* (0 to 180) degrees         10.0
         CAMERA_BEHINDNESS_LAG, 0.0,       //* (0 to 3) seconds          0.3
         CAMERA_DISTANCE, 7.0,             //* how far camera wants to be from target.( 0.5 to 50 meters )
         //CAMERA_FOCUS, < 0.0,0.0,0.0 >,     //* camera focus (target position) in region coords.

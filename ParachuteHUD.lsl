@@ -4,8 +4,8 @@
 
     @author: --- Unkown, Lilim, Zai
     @version: 5.15
-    @updated: "2024-05-18 22:46:08"
-    @revision: 165
+    @updated: "2024-05-18 23:08:30"
+    @revision: 166
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
 */
@@ -94,6 +94,7 @@ default
         opened = FALSE;
         deploy = FALSE;
         update();
+        llSetColor(< 1, 1, 1 >, smoke_face);
 
         llSetTimerEvent(0.2);     // set timer interval
     }

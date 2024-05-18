@@ -4,6 +4,20 @@ Parashute mesh and OpenSIM/LSL script for skydriving, script is based on "Jeff H
 
 I added Target and Pin where landed
 
+## Inworld usage
+
+Click double on arrow up for push turbo speed
+
+## Customize
+
+### Color
+
+You can change color of each piece of top surface
+
+### Texture
+
+Select all face on top surface, change to texture you like
+
 ## Mesh License (CC BY-NC-SA 4.0)
 
 # Scripts
@@ -47,6 +61,7 @@ http://www.heatonresearch.com/articles/series/22/
 #### Target
 
 * Import it with Textures, use good physic shape, midium is good, we need to collide
+* use LOD for all like above to see it from far
 * Remove basic Texture, make it glow, light, shininss, colors as you like
 * Upload script ParachuteTarget.lsl into to it
 * Copy it
