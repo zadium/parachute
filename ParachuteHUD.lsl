@@ -4,8 +4,8 @@
 
     @author: --- Unkown, Lilim, Zai
     @version: 5.15
-    @updated: "2024-05-18 14:46:33"
-    @revision: 150
+    @updated: "2024-05-18 18:09:14"
+    @revision: 159
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
 */
@@ -22,6 +22,9 @@ float dist;       //* distance above ground
 vector velocity;     //* vertical velocity
 integer opened = FALSE;
 integer deploy = FALSE;
+
+integer parachute_face = 0;
+integer smoke_face = 1;
 
 // formats a float variable with specified no. of digits after decimal
 string FormatDecimal(float number, integer precision)
@@ -57,18 +60,18 @@ update()
 {
     if (opened)
     {
-        llSetColor(< 0.99, 0.84, 0.36 >, ALL_SIDES);    // change HUD color to green
-        llSetPrimitiveParams( [ PRIM_GLOW, ALL_SIDES,  0.3 ]);    // make HUD glow
+        llSetColor(< 0.99, 0.84, 0.36 >, parachute_face);    // change HUD color to green
+        llSetPrimitiveParams( [ PRIM_GLOW, parachute_face,  0.3 ]);    // make HUD glow
     }
     else if (deploy)
     {
-        llSetColor(< 0.14, 0.73, 0.17 >, ALL_SIDES);   // change color back to red
-        llSetPrimitiveParams( [ PRIM_GLOW, ALL_SIDES,  0.0 ]);   // cancel glow
+        llSetColor(< 0.14, 0.73, 0.17 >, parachute_face);   // change color back to red
+        llSetPrimitiveParams( [ PRIM_GLOW, parachute_face,  0.0 ]);   // cancel glow
     }
     else
     {
-        llSetColor(< 0.73, 0.16, 0.14 >, ALL_SIDES);   // change color back to red
-        llSetPrimitiveParams( [ PRIM_GLOW, ALL_SIDES,  0.0 ]);   // cancel glow
+        llSetColor(< 0.73, 0.16, 0.14 >, parachute_face);   // change color back to red
+        llSetPrimitiveParams([PRIM_GLOW, parachute_face,  0.0 ]);   // cancel glow
     }
 }
 
@@ -104,26 +107,34 @@ default
     // event triggered when object is left-clicked
     touch_start(integer total_number)
     {
-        if (opened)
+        integer face = llDetectedTouchFace(0);
+        if (face == parachute_face)
         {
-            deploy = FALSE;
-            update();
-            llRegionSayTo(llGetOwner(), channel, "close"); //* sent to close chute
-        }
-        else
-        {
-            if (deploy)
+            if (opened)
             {
                 deploy = FALSE;
                 update();
-                llRegionSayTo(llGetOwner(), channel, "close");
+                llRegionSayTo(llGetOwner(), channel, "close"); //* sent to close chute
             }
             else
             {
-                deploy = TRUE;
-                update();
-                llRegionSayTo(llGetOwner(), channel, "deploy");
+                if (deploy)
+                {
+                    deploy = FALSE;
+                    update();
+                    llRegionSayTo(llGetOwner(), channel, "close");
+                }
+                else
+                {
+                    deploy = TRUE;
+                    update();
+                    llRegionSayTo(llGetOwner(), channel, "deploy");
+                }
             }
+        }
+        else if (face == smoke_face)
+        {
+            llRegionSayTo(llGetOwner(), channel, "smoke:toggle");
         }
     }
 

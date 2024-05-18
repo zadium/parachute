@@ -21,10 +21,45 @@ For more information about this book visit the following web site:
 
 http://www.heatonresearch.com/articles/series/22/
 
-#### Import Pin as
+#### Parachute
 
+* Export Top surface as one file, without convex mesh if exists
+* Create convex mish from top surface simple mish without Soldify modifier, Limit Disolve it as possible, then export it as file
+* Import parachute mesh top, in physic import the convex mesh (thank you Modee), we will link it
+
+* Export all others as one file, without Top Surface and Convex
+* Unlink the backpack then link it all to it as root
+* Object SmokeBrush
+* Make shure the bag is root prime
+* Upload script Parachute.lsl into it
+* Upload animations and sounds to it
+* Copy **Pin** into Bag
+* Take it, Attache it to Pelvis
+
+#### HUD
+
+* Import it with Textures, no need to select physic
+* Upload script ParachuteHUD.lsl into it
+* Upload textures, Parachute and Smoke
+* Set Face 0  to Parachute texture, Face 1 to Smoke texture
+* Attache it to Top Right, Edit it, move it to good corner we have text above leave space for it.
+
+#### Target
+
+* Import it with Textures, use good physic shape, midium is good, we need to collide
+* Remove basic Texture, make it glow, light, shininss, colors as you like
+* Upload script ParachuteTarget.lsl into to it
+* Copy it
+* Keep it on the groung
+
+#### Pin
+
+* Remove basic Texture, make it glow, light, shininss as you like
 * Phantom = True
---* Temporary = True
+* Make theat small sequare as transparent, it is for balance
+* Upload script ParachutePin.lsl into to it
+* Take it
+* Copy it into you Parachute bag
 
 You can remove/unlink lower surface if you want simple parachute
 

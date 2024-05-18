@@ -10,8 +10,8 @@
         Zai Dium
 
     @version: 6.1
-    @updated: "2024-05-18 16:02:02"
-    @revision: 584
+    @updated: "2024-05-18 18:54:47"
+    @revision: 586
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @resources
@@ -132,7 +132,7 @@ hideChute()
     integer i = llGetNumberOfPrims();
     while (i > 1)
     {
-        if (llToLower(llGetLinkName(i) ) != "smokeburst")
+        if (llToLower(llGetLinkName(i) ) != "SmokeBurst")
             llSetLinkAlpha(i, 0, ALL_SIDES);
         i--;
     }

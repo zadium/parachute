@@ -4,8 +4,8 @@
     @author: Zai Dium
 
     @version: 2.1
-    @updated: "2024-05-18 15:42:35"
-    @revision: 459
+    @updated: "2024-05-18 17:33:26"
+    @revision: 460
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
 */
@@ -21,9 +21,9 @@ default
 {
     state_entry()
     {
-	    llSetPrimitiveParams([PRIM_PHANTOM, TRUE]);
+        llSetPrimitiveParams([PRIM_PHANTOM, TRUE]);
         llSetText("", <1,1,1>, 1);
-	    llTargetOmega(ZERO_VECTOR, 0, 0);
+        llTargetOmega(ZERO_VECTOR, 0, 0);
     }
 
     on_rez(integer number)
