@@ -10,8 +10,8 @@
         Zai Dium
 
     @version: 6.1
-    @updated: "2024-05-18 18:54:47"
-    @revision: 586
+    @updated: "2024-05-18 22:57:37"
+    @revision: 607
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @resources
@@ -76,6 +76,7 @@ float X_Thrust = 20.0;   //* thrust to move forward / backward  17.0, 25
 float Y_vel = 0.0;
 float Z_vel = 34.0;    //* upward thrust to slow descent // 45
 
+string smokeburst_name = "SmokeBurst"; //* Prim name of Smoke Burst device
 //* Sounds
 string chute_opens_sound = "ParachuteOpening";  // parachute opening sound
 
@@ -132,7 +133,7 @@ hideChute()
     integer i = llGetNumberOfPrims();
     while (i > 1)
     {
-        if (llToLower(llGetLinkName(i) ) != "SmokeBurst")
+        if (llToLower(llGetLinkName(i) ) != llToLower(smokeburst_name))
             llSetLinkAlpha(i, 0, ALL_SIDES);
         i--;
     }
@@ -142,12 +143,13 @@ hideChute()
     llRegionSay(channel_number, "closed");                 //* Send chute is closed
 }
 
-displayChute()
+showChute()
 {
     integer i = llGetNumberOfPrims();
     while (i>1)
     {
-        llSetLinkAlpha(i, 1, ALL_SIDES);
+        if (llToLower(llGetLinkName(i) ) != llToLower(smokeburst_name))
+            llSetLinkAlpha(i, 1, ALL_SIDES);
         i--;
     }
     //* send message to chute to open
@@ -241,14 +243,20 @@ default
 {
     state_entry()
     {
-        channel_number = getChannel();
-        hideChute();       //* hide chute canopy/straps
-
         llSetStatus(STATUS_PHYSICS, FALSE);   //* make non-physical
         llSetText("", < 1, 1, 1 >, 1.0);
 
+        channel_number = getChannel();
+
+        if (llGetAttached()==0)
+            showChute();
+        else
+        {
+            hideChute();       //* hide chute canopy/straps
+            llRequestPermissions(llGetOwner(), PERMISSION_TRIGGER_ANIMATION );
+        }
+
         llPreloadSound( chute_opens_sound );
-        llRequestPermissions(llGetOwner(), PERMISSION_TRIGGER_ANIMATION );
 
         llSetTimerEvent(0.3);              //* set timer interval
 
@@ -256,21 +264,21 @@ default
         llListen(channel_number, "", NULL_KEY, "" );
 
         //* setup listen for chute deploy command from owner in chat
-        llListen( 0, "", llGetOwner(), "" );
-
+        llListen(0, "", llGetOwner(), "" );
     }
 
     on_rez(integer i)
     {
         channel_number = getChannel();
         llRegionSay(channel_number, "reset");                 //* Send chute is closed
-        llOwnerSay(" Chute is securely attached, In free-fall");
         llResetScript();
     }
 
     //* event triggered when message is received on channel
-    listen( integer channel, string name, key id, string message )
+    listen(integer channel, string name, key id, string message )
     {
+        if (llGetAttached()==0)
+            return;
         if(channel == 0)  //* if on chat channel
         {
             if (llGetOwner() == id)
@@ -304,13 +312,17 @@ default
         {
             if (llGetOwner() == llGetOwnerKey(id))
             {
-                if (isFalling())
+                if (message == "deploy" )      //* if chute deploy command received from HUD
                 {
-                    if (message == "deploy" )      //* if chute deploy command received from HUD
+                    if (isFalling())
                     {
                         stopSkydiving();
                         state deployed;                         //* enter chute deployed state
                     }
+                }
+                else if (message == "smoke:toggle" )      //* if chute deploy command received from HUD
+                {
+                    llMessageLinked(LINK_SET, 0, "smoke:toggle", NULL_KEY );
                 }
             }
         }
@@ -319,6 +331,8 @@ default
     //* event called at regular intervals
     timer()
     {
+        if (llGetAttached()==0)
+            return;
         dist = calculateGroundDistance();   //* check distance to ground
 
         if(
@@ -389,7 +403,7 @@ state deployed
     {
         llPlaySound(chute_opens_sound, 1.0);
 
-        displayChute();
+        showChute();
 
         llOwnerSay("Chute deployed");
 
@@ -409,7 +423,7 @@ state deployed
         llStartAnimation(steering_anim);   //* switch to 'using chute' pose now
 
         //* setup listen for owner in chat
-        llListen( 0, "", llGetOwner(), "" );
+        llListen(0, "", llGetOwner(), "" );
 
         channel_number = getChannel();
         llListen(channel_number, "", NULL_KEY, "" );
@@ -442,7 +456,7 @@ state deployed
     }
 
     //* event triggered when message is received on channel
-    listen( integer channel, string name, key id, string message )
+    listen(integer channel, string name, key id, string message )
     {
         if (channel == targetChannel)
         {
@@ -453,13 +467,17 @@ state deployed
         }
         else if (llGetOwner()== llGetOwnerKey(id))
         {
-            if((channel == 0) || (channel == channel_number))
+            if ((channel == 0) || (channel == channel_number))
             {
                 if(message == "close")        //* command to close chute
                 {
                     llStopAnimation(steering_anim);         //* stop the 'using chute' pose
                     hideChute();                          //* hide parachute
                     state default;                        //* back to falling state
+                }
+                else if (message == "smoke:toggle" )      //* if chute deploy command received from HUD
+                {
+                    llMessageLinked(LINK_SET, 0, "smoke:toggle", NULL_KEY );
                 }
             }
         }

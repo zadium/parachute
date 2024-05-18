@@ -1,9 +1,9 @@
 /**
-    @name: ChuteSmokingTail
+    @name: SmokeBurst
     @author: Zai Daemon
     @version: 1.3
-    @updated: "2023-05-26 21:27:34"
-    @revision: 447
+    @updated: "2024-05-18 22:46:20"
+    @revision: 455
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @description: will make tail of smoke behind engine, without lose any space, it use speed of object, 1/speed to brust particles
@@ -33,6 +33,13 @@ float burst;
 float speed;
 float part_speed;
 
+integer channel_number = -2341;       //* HUD > Back-pack channel
+
+integer getchannel()
+{
+    return (((integer)("0x"+llGetSubString((string)llGetOwner(),-8,-1)) & 0x3FFFFFFF) ^ 0xBFFFFFFF ) + 152;
+}
+
 smokeNow()
 {
     llParticleSystem([
@@ -44,7 +51,7 @@ smokeNow()
             | PSYS_PART_WIND_MASK
             //| PSYS_PART_RIBBON_MASK
             ,
-        PSYS_SRC_PATTERN,     		PSYS_SRC_PATTERN_ANGLE_CONE,
+        PSYS_SRC_PATTERN,             PSYS_SRC_PATTERN_ANGLE_CONE,
         //PSYS_SRC_TEXTURE, llGetInventoryName(INVENTORY_TEXTURE, 0),
         //PSYS_SRC_OMEGA,<0,-0.203125,0>,
 
@@ -173,11 +180,13 @@ toggle()
     {
         llSetTimerEvent(time);
         burstNow();
+        llRegionSayTo(llGetOwner(), channel_number, "smoke:is_on"); //* sent to smoke
     }
     else
     {
         llSetTimerEvent(0);
         llParticleSystem([]);  // end smoke
+        llRegionSayTo(llGetOwner(), channel_number, "smoke:is_off"); //* sent to smoke
     }
 }
 
@@ -185,6 +194,7 @@ default
 {
     state_entry()
     {
+        channel_number = getchannel();
         llParticleSystem([]);
     }
 
@@ -195,7 +205,8 @@ default
 
     touch_start(integer num_detected)
     {
-        toggle();
+        if (llDetectedKey(0) == llGetOwner())
+            toggle();
     }
 
     timer()

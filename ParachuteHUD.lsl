@@ -4,8 +4,8 @@
 
     @author: --- Unkown, Lilim, Zai
     @version: 5.15
-    @updated: "2024-05-18 18:09:14"
-    @revision: 159
+    @updated: "2024-05-18 22:46:08"
+    @revision: 165
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
 */
@@ -16,7 +16,7 @@
     Lilim: Show status feed back from back-back, do not show green hud until confirm from chute
 */
 
-integer channel = -2341;       //* HUD > Back-pack channel
+integer channel_number = -2341;       //* HUD > Back-pack channel
 
 float dist;       //* distance above ground
 vector velocity;     //* vertical velocity
@@ -87,15 +87,14 @@ default
     state_entry()
     {
 
-        channel = getchannel();
+        channel_number = getchannel();
 
-        llListen( channel, "", NULL_KEY, "" );
+        llListen( channel_number, "", NULL_KEY, "" );
 
         opened = FALSE;
         deploy = FALSE;
         update();
 
-        llOwnerSay("HUD initialized.");
         llSetTimerEvent(0.2);     // set timer interval
     }
 
@@ -114,7 +113,7 @@ default
             {
                 deploy = FALSE;
                 update();
-                llRegionSayTo(llGetOwner(), channel, "close"); //* sent to close chute
+                llRegionSayTo(llGetOwner(), channel_number, "close"); //* sent to close chute
             }
             else
             {
@@ -122,19 +121,19 @@ default
                 {
                     deploy = FALSE;
                     update();
-                    llRegionSayTo(llGetOwner(), channel, "close");
+                    llRegionSayTo(llGetOwner(), channel_number, "close");
                 }
                 else
                 {
                     deploy = TRUE;
                     update();
-                    llRegionSayTo(llGetOwner(), channel, "deploy");
+                    llRegionSayTo(llGetOwner(), channel_number, "deploy");
                 }
             }
         }
         else if (face == smoke_face)
         {
-            llRegionSayTo(llGetOwner(), channel, "smoke:toggle");
+            llRegionSayTo(llGetOwner(), channel_number, "smoke:toggle");
         }
     }
 
@@ -160,8 +159,16 @@ default
         else if ( message == "fall" )    //* if avatar is falling we send deploy message
         {
             if (deploy)
-                llRegionSayTo(llGetOwner(), channel, "deploy");
+                llRegionSayTo(llGetOwner(), channel_number, "deploy");
             update();
+        }
+        else if ( message == "smoke:is_on" )
+        {
+            llSetColor(< 0.73, 0.16, 0.14 >, smoke_face);
+        }
+        else if ( message == "smoke:is_off" )
+        {
+            llSetColor(< 1, 1, 1 >, smoke_face);
         }
     }
 
