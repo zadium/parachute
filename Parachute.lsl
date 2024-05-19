@@ -11,8 +11,8 @@
         Zai Dium
 
     @version: 6.1
-    @updated: "2024-05-19 01:31:29"
-    @revision: 611
+    @updated: "2024-05-19 17:50:27"
+    @revision: 612
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @resources
@@ -174,17 +174,17 @@ set_camera_view()
     llSetCameraParams(
     [
         CAMERA_ACTIVE, TRUE,              //* TRUE = active (Dynamic cam mode), FALSE = inactive
-        CAMERA_BEHINDNESS_ANGLE, 90.0,    //* (0 to 180) degrees         10.0
+        CAMERA_DISTANCE, 3.0,             //* how far camera wants to be from target.( 0.5 to 50 meters )
+        CAMERA_BEHINDNESS_ANGLE, 0.0,    //* (0 to 180) degrees         10.0
         CAMERA_BEHINDNESS_LAG, 0.0,       //* (0 to 3) seconds          0.3
-        CAMERA_DISTANCE, 7.0,             //* how far camera wants to be from target.( 0.5 to 50 meters )
         //CAMERA_FOCUS, < 0.0,0.0,0.0 >,     //* camera focus (target position) in region coords.
-        CAMERA_FOCUS_LAG, 0.1 ,             //* How much camera lags as it tries to aim towards target
+        CAMERA_FOCUS_OFFSET, < 0.0,0.0,-1.0 >, //* camera focus position relative to the target
+        CAMERA_FOCUS_LAG, 0 ,             //* How much camera lags as it tries to aim towards target
         //* (0 to 3) seconds
         CAMERA_FOCUS_LOCKED, FALSE,           //* (TRUE or FALSE)
-        CAMERA_FOCUS_OFFSET, < 0.0,0.0,0.0 >, //* camera focus position relative to the target
         // <-10,-10,-10> to <10,10,10> meters
         CAMERA_FOCUS_THRESHOLD, 0.4,          //* (0 to 4) meters   0.4
-        CAMERA_PITCH, 45.0,                   //* angular amount camera aims straight ahead vs. down
+        CAMERA_PITCH, 60.0,                   //* angular amount camera aims straight ahead vs. down
         //* (-45 to 80) degrees          40.0
         //CAMERA_POSITION, <0.0,0.0,0.0>,      //* camera position in region coords.
         CAMERA_POSITION_LAG, 0.1,           //* How much camera lags as it moves towards 'ideal' position
