@@ -4,8 +4,8 @@
 
     @author: --- Unkown, Lilim, Zai
     @version: 5.15
-    @updated: "2024-05-18 23:08:30"
-    @revision: 166
+    @updated: "2024-05-19 17:55:08"
+    @revision: 169
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
 */
@@ -60,12 +60,12 @@ update()
 {
     if (opened)
     {
-        llSetColor(< 0.99, 0.84, 0.36 >, parachute_face);    // change HUD color to green
+        llSetColor(< 0.14, 0.73, 0.17 >, parachute_face);   // change color back to yellow
         llSetPrimitiveParams( [ PRIM_GLOW, parachute_face,  0.3 ]);    // make HUD glow
     }
     else if (deploy)
     {
-        llSetColor(< 0.14, 0.73, 0.17 >, parachute_face);   // change color back to red
+        llSetColor(< 0.99, 0.84, 0.36 >, parachute_face);    // change HUD color to green
         llSetPrimitiveParams( [ PRIM_GLOW, parachute_face,  0.0 ]);   // cancel glow
     }
     else

@@ -11,8 +11,8 @@
         Zai Dium
 
     @version: 6.1
-    @updated: "2024-05-19 17:50:27"
-    @revision: 612
+    @updated: "2024-05-19 18:08:27"
+    @revision: 617
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @resources
@@ -141,7 +141,6 @@ hideChute()
     }
     //* send message to chute to close
     llMessageLinked( LINK_SET, 0, "close", NULL_KEY);
-    llMessageLinked( LINK_SET, 0, "smoke:off", NULL_KEY);
     llRegionSay(channel_number, "closed");                 //* Send chute is closed
 }
 
@@ -156,7 +155,7 @@ showChute()
     }
     //* send message to chute to open
     llMessageLinked(LINK_SET, 0,  "open", NULL_KEY );
-    llMessageLinked(LINK_SET, 0,  "smoke:on", NULL_KEY);
+    //llMessageLinked(LINK_SET, 0,  "smoke:on", NULL_KEY);
     llRegionSay(channel_number, "opened");                 //* Send chute is opening
 }
 
@@ -255,6 +254,7 @@ default
         else
         {
             hideChute();       //* hide chute canopy/straps
+            //llMessageLinked( LINK_SET, 0, "smoke:off", NULL_KEY);
             llRequestPermissions(llGetOwner(), PERMISSION_TRIGGER_ANIMATION );
         }
 
@@ -273,6 +273,7 @@ default
     {
         channel_number = getChannel();
         llRegionSay(channel_number, "reset");                 //* Send chute is closed
+        llMessageLinked( LINK_SET, 0, "smoke:off", NULL_KEY);
         llResetScript();
     }
 
@@ -535,7 +536,6 @@ state deployed
         {
             llStopAnimation(skydive_anim);          //* stop all poses
             llStopAnimation(steering_anim);
-
             state default;
         }
 
@@ -558,6 +558,7 @@ state deployed
             {
                 score_height = (deploy_start_height - d);
                 rezMapPin();
+                llMessageLinked( LINK_SET, 0, "smoke:off", NULL_KEY);
                 //* object_rez with state to default
             }
             else

@@ -2,12 +2,13 @@
     @name: SmokeBurst
     @author: Zai Daemon
     @version: 1.3
-    @updated: "2024-05-18 22:46:20"
-    @revision: 455
+    @updated: "2024-05-19 18:11:27"
+    @revision: 457
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @description: will make tail of smoke behind engine, without lose any space, it use speed of object, 1/speed to brust particles
 */
+
 //* settings
 
 integer Ribbon = FALSE; //* smoke or ribbon
@@ -234,6 +235,7 @@ default
             color = llGetColor(ALL_SIDES);
             on = TRUE;
             burstNow();
+            llRegionSayTo(llGetOwner(), channel_number, "smoke:is_on"); //* sent to smoke
             llSetTimerEvent(time);
         }
         else if (cmd == "smoke:off")
@@ -244,6 +246,7 @@ default
             on = FALSE;
             llSetTimerEvent(0);
             llParticleSystem([]);  // end smoke
+            llRegionSayTo(llGetOwner(), channel_number, "smoke:is_off"); //* sent to smoke
         }
     }
 }
