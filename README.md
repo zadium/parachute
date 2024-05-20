@@ -43,8 +43,10 @@ http://www.heatonresearch.com/articles/series/22/
 
 * Export all others as one file, without Top Surface and Convex
 * Unlink the backpack then link it all to it as root
-* Object SmokeBrush
-* Make shure the bag is root prime
+* Name smoke object to SmokeBurst, this prevent from hiding
+* Again make shure the bag is root prime
+* Edit both surface Shininess texture to blank (White), change color of it to light gray, this will add little shinny to the surface
+* Upload image rgba_25.png, assign it texture to surface sides
 * Upload script Parachute.lsl into it
 * Upload animations and sounds to it
 * Copy **Pin** into Bag
@@ -80,12 +82,12 @@ You can remove/unlink lower surface if you want simple parachute
 
 ## Animation
 
-Import it
+Import it, SkyDiving and Steering
 
-Priority = 3
-Loop = True
+* Priority = 3
+* Loop = True
+* Upload into parachute root (bag)
 
 ## Resource
 
 https://www.101soundboards.com/sounds/27005592-parachute-opening-2-options-cord-pull-skydive-parasend-parashoot-at-2create
-https://www.freepik.com/icon/parachute_4533060
