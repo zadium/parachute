@@ -10,15 +10,10 @@ Click double on arrow up for push turbo speed
 
 ## Customize
 
-### Color
-
-You can change color of each piece of top surface
-
-### Texture
-
-Select all face on top surface, change to texture you like
-
-You can change the logo on backpack/bag
+* You can remove/unlink lower surface if you want simple parachute
+* You can change color of each piece of top surface
+* or select all face on top surface, change to texture you like
+* You can change the logo on backpack/bag
 
 ### Smoke color
 
@@ -98,8 +93,6 @@ Export and Import from Belnder to Inworld
 * Upload script ParachutePin.lsl into to it
 * Take it
 * Copy it into you Parachute bag
-
-You can remove/unlink lower surface if you want simple parachute
 
 ## Animations
 
