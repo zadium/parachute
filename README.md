@@ -8,7 +8,9 @@ I added Target and Pin where landed Target
 
 ## Inworld usage
 
-Click double on arrow up for push turbo speed
+Go to the sky, fly, jump, after a few second you will do skydiving, click on the hud icon to open parachute, or wait till 400m for auto open
+Press Up, Left, Right to control direction
+Press double on Up key for push forward turbo speed
 
 ## Customize
 
