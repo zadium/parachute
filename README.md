@@ -1,4 +1,4 @@
-# Parachute v2
+# Parachute v2 (aja v7.x inworld)
 
 Parashute mesh and OpenSIM/LSL script for skydriving, script is based on "Jeff Heaton" code and many others of modifications
 
@@ -26,7 +26,7 @@ Just change color of prim of burst to change the color of smoke
 
 # Mesh
 
-## Mesh License (CC BY-NC-SA 4.0)
+Meshs licensed (CC BY-NC-SA 4.0)
 
 # Scripts
 
@@ -48,11 +48,15 @@ http://www.heatonresearch.com/articles/series/22/
 
 ## Parachute Target, HUD
 
-My Script , Licensed (CC BY-NC-SA 4.0)
+my Scripts licensed (CC BY-NC-SA 4.0)
 
-It is my script
+# Building
 
-#### Parachute
+Export and Import from Belnder to Inworld
+
+## Mesh
+
+### Parachute
 
 * Export Top surface as one file, without convex mesh if exists
 * Create convex mish from top surface simple mish without Soldify modifier, Limit Disolve it as possible, then export it as file
@@ -69,7 +73,7 @@ It is my script
 * Copy **Pin** into Bag
 * Take it, Attache it to Pelvis
 
-#### HUD
+### HUD
 
 * Import it with Textures, no need to select physic, or select same dae file as physic file
 * Upload script ParachuteHUD.lsl into it
@@ -77,7 +81,7 @@ It is my script
 * Set Face 0  to Parachute texture, Face 1 to Smoke texture
 * Attache it to Top Right, Edit it, move it to good corner we have text above leave space for it.
 
-#### Target
+### Target
 
 * Import it with Textures, use good physic shape, midium is good, we need to collide
 * use LOD for all like above to see it from far
@@ -86,7 +90,7 @@ It is my script
 * Copy it
 * Keep it on the groung
 
-#### Pin
+ ### Pin
 
 * Remove basic Texture, make it glow, light, shininss as you like
 * Phantom = True
@@ -97,7 +101,7 @@ It is my script
 
 You can remove/unlink lower surface if you want simple parachute
 
-## Animation
+## Animations
 
 Import it, SkyDiving and Steering
 
@@ -105,6 +109,6 @@ Import it, SkyDiving and Steering
 * Loop = True
 * Upload into parachute root (bag)
 
-## Resource
+# Resource
 
 https://www.101soundboards.com/sounds/27005592-parachute-opening-2-options-cord-pull-skydive-parasend-parashoot-at-2create
