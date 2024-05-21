@@ -11,8 +11,8 @@
         Zai Dium
 
     @version: 6.1
-    @updated: "2024-05-21 17:27:44"
-    @revision: 619
+    @updated: "2024-05-21 23:16:59"
+    @revision: 620
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @resources
@@ -301,13 +301,18 @@ default
                     llMessageLinked(LINK_SET, 0, "ribbon:on", NULL_KEY );
                 else if (message == "ribbon off")
                     llMessageLinked(LINK_SET, 0, "ribbon:off", NULL_KEY );
-                else if((message == "open") || (message == "pull"))        //* command to open chute
+                else if (message == "open")        //* command to open chute
                 {
                     if (isFalling())
                     {
                         stopSkydiving();
                         state deployed;                       //* enter chute deployed state
                     }
+                }
+                else if ((message == "force open") || (message == "pull"))        //* command to open chute
+                {
+                    stopSkydiving();
+                    state deployed;                       //* enter chute deployed state
                 }
             }
         }
