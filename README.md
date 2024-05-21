@@ -18,10 +18,21 @@ You can change color of each piece of top surface
 
 Select all face on top surface, change to texture you like
 
+You can change the logo on backpack/bag
+
+### Smoke color
+
+Just change color of prim of burst to change the color of smoke
+
+# Mesh
+
 ## Mesh License (CC BY-NC-SA 4.0)
 
 # Scripts
 
+## Parachute
+
+Main script of Parachute
 Based on "Jeff Heaton" script with many modification from others and me, names mentioned in the scripts
 
 From the book:
@@ -34,6 +45,12 @@ This script may be freely copied and modified so long as this header remains unm
 For more information about this book visit the following web site:
 
 http://www.heatonresearch.com/articles/series/22/
+
+## Parachute Target, HUD
+
+My Script , Licensed (CC BY-NC-SA 4.0)
+
+It is my script
 
 #### Parachute
 
@@ -54,7 +71,7 @@ http://www.heatonresearch.com/articles/series/22/
 
 #### HUD
 
-* Import it with Textures, no need to select physic
+* Import it with Textures, no need to select physic, or select same dae file as physic file
 * Upload script ParachuteHUD.lsl into it
 * Upload textures, Parachute and Smoke
 * Set Face 0  to Parachute texture, Face 1 to Smoke texture

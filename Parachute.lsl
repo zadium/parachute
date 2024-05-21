@@ -11,8 +11,8 @@
         Zai Dium
 
     @version: 6.1
-    @updated: "2024-05-19 18:08:27"
-    @revision: 617
+    @updated: "2024-05-21 17:27:44"
+    @revision: 619
     @localfile: ?defaultpath\Parachute\?@name.lsl
     @license: MIT
     @resources
@@ -127,7 +127,7 @@ rezMapPin()
     v.z = v.z + vb.z + 0.1;
 
     //v.z = llGround( ZERO_VECTOR );
-    llRezObject("Pin", v, ZERO_VECTOR, ZERO_ROTATION, 1);
+    llRezObject("ParachutePin", v, ZERO_VECTOR, ZERO_ROTATION, 1);
 }
 
 hideChute()
