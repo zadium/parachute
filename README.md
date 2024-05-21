@@ -2,7 +2,9 @@
 
 Parashute mesh and OpenSIM/LSL script for skydriving, script is based on "Jeff Heaton" code and many others of modifications
 
-I added Target and Pin where landed
+I added Target and Pin where landed Target
+
+![screenshot_01](https://github.com/zadium/parachute/assets/111429928/433823f8-b373-40d2-8005-d4345717cd79)
 
 ## Inworld usage
 
