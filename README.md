@@ -14,10 +14,11 @@ Press double on Up key for push forward turbo speed
 
 ## Customize
 
-* You can remove/unlink lower surface if you want simple parachute
+* I used a group of color to recognize materials, I loves colors, it is gift from god, **I DO NOT STAND** with any group, keep your political thoughts aware.
 * You can change color of each piece of top surface
 * or select all face on top surface, change to texture you like
 * You can change the logo on backpack/bag
+* You can remove/unlink lower surface if you want simple parachute
 
 ### Smoke color
 
